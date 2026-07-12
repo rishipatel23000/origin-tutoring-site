@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Origin Tutoring design tokens — "Quadrangle" direction (Ivy editorial).
+  Every color on the site comes from this block. Tailwind's default palette
+  is wiped below, so raw classes like `bg-blue-500` don't exist and can't
+  sneak in. Fonts are loaded in layout.tsx via next/font and arrive here
+  as the --font-fraunces / --font-inter variables.
+*/
+
+@theme {
+  /* ---- colors ------------------------------------------------------- */
+  --color-*: initial; /* disable Tailwind's default palette */
+
+  --color-navy: #0b2239; /* headings, footer, primary buttons */
+  --color-navy-mid: #16385c; /* button hover, secondary navy surfaces */
+  --color-ink: #24344d; /* body text on cream (11.7:1) */
+  --color-cream: #fbf7ef; /* page background */
+  --color-cream-deep: #f4eddf; /* alternating sections, cards */
+  --color-line: #e3d9c6; /* hairline borders */
+  --color-accent: #7a5d22; /* brass — links, eyebrows, active states ONLY.
+                              Never a large fill; CTAs are navy. (5.75:1) */
+
+  /* ---- radii — sharp, editorial ------------------------------------- */
+  --radius-*: initial;
+  --radius-sm: 2px; /* inputs, tags */
+  --radius-md: 6px; /* buttons */
+  --radius-lg: 10px; /* cards, images */
+
+  /* ---- type scale ---------------------------------------------------
+     Spacing uses Tailwind's default 4px-based scale (p-4 = 16px, etc.) */
+  --text-display: clamp(2.5rem, 1.6rem + 3.8vw, 4rem); /* 40→64px, hero only */
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.015em;
+
+  --text-h1: 2.75rem; /* 44px — page titles */
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.01em;
+
+  --text-h2: 2rem; /* 32px — section heads */
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: 1.4375rem; /* 23px — card/subsection heads */
+  --text-h3--line-height: 1.3;
+
+  --text-body-lg: 1.125rem; /* 18px — lede paragraphs */
+  --text-body-lg--line-height: 1.6;
+
+  --text-body: 1rem; /* 16px — default */
+  --text-body--line-height: 1.65;
+
+  --text-small: 0.875rem; /* 14px — meta, captions */
+  --text-small--line-height: 1.5;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-navy);
+  }
+
+  ::selection {
+    background-color: var(--color-navy);
+    color: var(--color-cream);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Section label above headings — always brass, always caps. */
+@utility eyebrow {
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent);
 }
