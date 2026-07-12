@@ -20,6 +20,8 @@
   --color-line: #e3d9c6; /* hairline borders */
   --color-accent: #7a5d22; /* brass — links, eyebrows, active states ONLY.
                               Never a large fill; CTAs are navy. (5.75:1) */
+  --color-error: #8a2c1f; /* muted brick red — failed/error states ONLY,
+                              e.g. booking checkout errors. Never decorative. (~7:1 on cream) */
 
   /* ---- radii — sharp, editorial ------------------------------------- */
   --radius-*: initial;

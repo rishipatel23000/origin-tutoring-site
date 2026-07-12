@@ -7,12 +7,11 @@ import { validateRefCode, createPendingSignup } from "@/lib/referrals";
 
   Expects a JSON body: { priceId: string, email?: string, refCode?: string }
 
-  - priceId: TODO -- the Stripe Price ID for whatever's being booked
-    (1-on-1 session, group session, Ascent session). Create these as
-    Products/Prices in the Stripe dashboard once the account exists;
-    the booking page should pass the right one for what the visitor
-    selected. There's no fallback/default price on purpose -- picking
-    one silently would be a pricing bug waiting to happen.
+  - priceId: the Stripe Price ID for whatever's being booked. See
+    src/lib/pricing.ts for the current 1-on-1 / group / Ascent Price
+    IDs -- that's the single source of truth /booking reads from.
+    There's no fallback/default price here on purpose: picking one
+    silently would be a pricing bug waiting to happen.
   - refCode: optional referral code entered at checkout. Invalid or
     missing codes don't block checkout (see validateRefCode).
 */
@@ -51,7 +50,7 @@ export async function POST(request: NextRequest) {
       ref_code: validatedRefCode ?? "",
     },
     success_url: `${siteUrl}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${siteUrl}/booking`,
+    cancel_url: `${siteUrl}/booking?canceled=1`,
   });
 
   return NextResponse.json({ url: session.url });
