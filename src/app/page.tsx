@@ -202,26 +202,38 @@ export default function Home() {
                 </Reveal>
               ))}
             </div>
+            <Reveal delay={0.4}>
+              <div className="mt-20 border-t border-line pt-16 md:mt-24 md:pt-20">
+                <AscentMark className="w-40" />
+                <p className="mt-8 max-w-2xl font-display text-h1 font-medium leading-tight text-navy">
+                  Every hero has an origin story — we could be yours.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* Closing CTA */}
+        {/* Closing CTA — mirrors the hero's grid + mark to bookend the page */}
         <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto w-full max-w-[1120px]">
-            <Reveal>
-              <AscentMark className="mb-10 w-48" />
-              <h2 className="max-w-xl text-h2">Start with one session.</h2>
-              <p className="mt-5 max-w-xl text-body-lg">
-                No packages required up front. Book a single session, see how
-                your student responds, and decide from there.
-              </p>
-              <Link
-                href="/booking"
-                className="mt-9 inline-flex items-center gap-2 rounded-md bg-navy px-6 py-3 text-small font-medium text-cream transition-colors hover:bg-navy-mid"
-              >
-                Book a session
-                <ArrowRight size={16} />
-              </Link>
+          <div className="mx-auto grid w-full max-w-[1120px] items-end gap-16 lg:grid-cols-[3fr_2fr]">
+            <div>
+              <Reveal>
+                <h2 className="max-w-xl text-h2">Start with one session.</h2>
+                <p className="mt-5 max-w-xl text-body-lg">
+                  No packages required up front. Book a single session, see
+                  how your student responds, and decide from there.
+                </p>
+                <Link
+                  href="/booking"
+                  className="mt-9 inline-flex items-center gap-2 rounded-md bg-navy px-6 py-3 text-small font-medium text-cream transition-colors hover:bg-navy-mid"
+                >
+                  Book a session
+                  <ArrowRight size={16} />
+                </Link>
+              </Reveal>
+            </div>
+            <Reveal delay={0.15} className="hidden lg:block">
+              <AscentMark className="w-full" />
             </Reveal>
           </div>
         </section>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Gift, Mail, Receipt, Tag } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -13,10 +13,22 @@ export const metadata: Metadata = {
 };
 
 const included = [
-  "Pay only for the session you book — no recurring or subscription charges",
-  "The exact price shown here is what you pay at checkout, nothing added",
-  "Referral codes apply automatically at checkout, not after the fact",
-  "A short session summary emailed home after every session",
+  {
+    icon: Receipt,
+    text: "Pay only for the session you book — no recurring or subscription charges",
+  },
+  {
+    icon: Tag,
+    text: "The exact price shown here is what you pay at checkout, nothing added",
+  },
+  {
+    icon: Gift,
+    text: "Referral codes apply automatically at checkout, not after the fact",
+  },
+  {
+    icon: Mail,
+    text: "A short session summary emailed home after every session",
+  },
 ];
 
 export default function PricingPage() {
@@ -26,15 +38,15 @@ export default function PricingPage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="px-6 pb-16 pt-20 md:pt-28">
-          <div className="mx-auto w-full max-w-[720px]">
+          <div className="mx-auto w-full max-w-[1120px]">
             <Reveal>
               <p className="eyebrow">Pricing</p>
-              <h1 className="mt-5 text-h1">
+              <h1 className="mt-5 max-w-2xl text-h1">
                 One price per session. No packages required.
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-7 text-body-lg">
+              <p className="mt-7 max-w-xl text-body-lg">
                 Every format is priced and billed per session — pay for the
                 one you book, see how your student responds, and decide from
                 there. Prices are in Canadian dollars.
@@ -94,12 +106,12 @@ export default function PricingPage() {
             <Reveal>
               <p className="eyebrow">What&apos;s included, always</p>
             </Reveal>
-            <div className="mt-10 grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
+            <div className="mt-10 grid gap-6 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4">
               {included.map((item, i) => (
-                <Reveal key={item} delay={0.06 * i}>
-                  <div className="flex items-start gap-3 text-small">
-                    <Check size={16} className="mt-0.5 shrink-0 text-accent" />
-                    {item}
+                <Reveal key={item.text} delay={0.06 * i}>
+                  <div className="flex h-full flex-col gap-4 rounded-lg border border-line bg-cream p-8">
+                    <item.icon size={22} className="text-accent" />
+                    <p className="text-small text-ink/80">{item.text}</p>
                   </div>
                 </Reveal>
               ))}

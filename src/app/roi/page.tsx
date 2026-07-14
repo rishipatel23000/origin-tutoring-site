@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import AscentMark from "@/components/AscentMark";
+import GrowthMark from "@/components/GrowthMark";
 import Reveal from "@/components/Reveal";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -55,7 +55,7 @@ export default function RoiPage() {
               </Reveal>
             </div>
             <Reveal delay={0.2} className="hidden lg:block">
-              <AscentMark className="w-full" />
+              <GrowthMark className="w-full" />
             </Reveal>
           </div>
         </section>
