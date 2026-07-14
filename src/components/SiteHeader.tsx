@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Wordmark from "@/components/Wordmark";
 
 const nav = [
-  { href: "/tutoring", label: "Tutoring" },
+  { href: "/tutoring", label: "Programs" },
   { href: "/ascent", label: "Ascent" },
   { href: "/pricing", label: "Pricing" },
   { href: "/roi", label: "The Return" },
@@ -12,8 +13,8 @@ export default function SiteHeader() {
   return (
     <header className="border-b border-line bg-cream">
       <div className="mx-auto flex w-full max-w-[1120px] items-center justify-between px-6 py-5">
-        <Link href="/" className="font-display text-h3 font-medium text-navy">
-          Origin
+        <Link href="/">
+          <Wordmark />
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {nav.map((item) => (
