@@ -43,6 +43,11 @@ export async function POST(request: NextRequest) {
     mode: "payment",
     line_items: [{ price: priceId, quantity: 1 }],
     customer_email: email,
+    // Force a Customer object to be created even though this is a
+    // one-time payment -- the webhook keys confirmSignupPayment off
+    // session.customer, which stays null under Stripe's default
+    // "if_required" behavior.
+    customer_creation: "always",
     // Stashing signup_id here is what lets the webhook find its way
     // back to this exact row -- see src/app/api/webhooks/stripe/route.ts.
     metadata: {
