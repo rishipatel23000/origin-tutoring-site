@@ -74,3 +74,4 @@ Not built yet: the `/booking` and `/pricing` pages that would actually
 call `/api/checkout` from the browser, and an ambassador-facing view of
 referral signups. Both are separate, focused pieces of work.
 
+hello world
